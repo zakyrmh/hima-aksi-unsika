@@ -1,0 +1,59 @@
+@extends('layouts.index')
+
+@section('container')
+    <div class="flex flex-col justify-between items-center mb-4 lg:flex-row">
+        <h2 class="text-lg font-bold">Postingan</h2>
+        <div class="my-4 lg:my-0">
+            <form action="/posts" method="GET">
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request("category") }}">
+                @endif
+                @if (request('author'))
+                    <input type="hidden" name="author" value="{{ request("author") }}">
+                @endif
+                <input type="text" class="border border-black rounded-md px-2 py-1" placeholder="Search..." name="search">
+                <button class="bg-blue-400 text-white rounded-md px-3 py-1 ml-2" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    @if ($posts->count())
+        <div class="grid gap-4 grid-cols-2 justify-items-center sm:grid-cols-3 lg:grid-cols-2">
+            @foreach ($posts as $post)
+                <article class="flex flex-col items-center bg-white w-44 rounded-xl shadow-xl lg:flex-row lg:w-full">
+                    <img class="h-full aspect-[14/9] object-cover rounded-t-xl lg:w-40 lg:rounded-l-xl lg:rounded-tr-none"
+                        src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}" alt="event">
+                    <div class="flex flex-col gap-1 mx-4 mt-4 lg:mb-4">
+                        <a href="/posts/{{ $post->id }}">
+                            <h3 class="font-semibold leading-5">{{ $post->title }}</h3>
+                        </a>
+                        <p class="text-xs">By. <a href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a> in
+                            <a href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
+                            {{ $post->created_at->diffForHumans() }} </p>
+                        <div class="text-sm line-clamp-3 pt-1">{!! $post->body !!}</div>
+                    </div>
+                    <div class="flex items-center gap-3 mt-4 mb-4 lg:mr-4">
+                        <button class="bg-blue-400 rounded-xl px-3 py-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-4 h-4 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
+                        </button>
+                        <button class="bg-red-400 rounded-xl px-3 py-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-4 h-4 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    @else
+        <p class="text-center mt-10">No post found</p>
+    @endif
+    <div class="mt-4">
+        {{ $posts->links() }}
+    </div>
+@endsection
