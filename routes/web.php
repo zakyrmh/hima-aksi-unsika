@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,15 +27,4 @@ Route::prefix('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 });
 
-// kita atur juga untuk middleware menggunakan group pada routing
-// didalamnya terdapat group untuk mengecek kondisi login
-// jika user yang login merupakan admin maka akan diarahkan ke AdminController
-// jika user yang login merupakan user biasa maka akan diarahkan ke UserController
-// Route::group(['middleware' => ['auth']], function () {
-//     Route::group(['middleware' => ['cek_login:admin']], function () {
-//         Route::resource('admin', AdminController::class);
-//     });
-//     Route::group(['middleware' => ['cek_login:user']], function () {
-//         Route::resource('user', UserController::class);
-//     });
-// });
+route::get('/dashboard', [DashboardHomeController::class, 'index'])->name('dashboard.home')->middleware('auth');
