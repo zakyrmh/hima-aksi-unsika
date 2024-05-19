@@ -25,8 +25,13 @@
             <a href="/contact" class="text-sm font-semibold leading-6 text-gray-900">Contact</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
-                    aria-hidden="true">&rarr;</span></a>
+            @auth
+                <a href="/dashboard" class="text-sm font-semibold leading-6 text-gray-900">Dashboard <span
+                        aria-hidden="true">&rarr;</span></a>
+            @else
+                <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
+                        aria-hidden="true">&rarr;</span></a>
+            @endauth
         </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
