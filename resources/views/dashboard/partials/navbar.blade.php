@@ -10,12 +10,16 @@
                     <div class="ml-10 flex items-baseline space-x-4">
                         <a href="/dashboard"
                             class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Dashboard' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Dashboard</a>
-                        <a href="/user"
-                            class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Users' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Users</a>
-                        <a href="/post"
+                        @if (Auth::check() && Auth::user()->role === 'admin')
+                            <a href="/dashboard/users"
+                                class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Users' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Users</a>
+                        @endif
+                        <a href="/dashboard/posts"
                             class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Posts' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Posts</a>
-                        <a href="/member"
-                            class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Members' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Members</a>
+                        @if (Auth::check() && Auth::user()->role === 'admin')
+                            <a href="/dashboard/members"
+                                class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Members' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Members</a>
+                        @endif
                     </div>
                 </div>
             </div>

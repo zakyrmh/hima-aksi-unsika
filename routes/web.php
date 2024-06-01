@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
@@ -34,15 +36,27 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard/edit-profile', function () {
-        return view('dashboard/pages/profile/index')
+        return view('dashboard/pages/profile/index', [
+            'title' => 'Edit Profile'
+        ]);
     });
     Route::get('/post', function () {
-    return view('dashboard/pages/posts/index', [
-        'title' => 'Posts'
-    ]);
-});
-});
-
-Route::controller(UserController::class)->group(function () {
-    Route::get('/dashboard/users', 'index');
+        return view('dashboard/pages/posts/index', [
+            'title' => 'Posts'
+        ]);
+    });
+    Route::get('/dashboard/users', function () {
+        if (Gate::allows('access-admin')) {
+            return app(UserController::class)->index();
+        } else {
+            return redirect('/dashboard')->with('error', 'You do not have admin access.');
+        }
+    });
+    Route::get('/dashboard/members', function () {
+        if (Gate::allows('access-admin')) {
+            return app(MemberController::class)->index();
+        } else {
+            return redirect('/dashboard')->with('error', 'You do not have admin access.');
+        }
+    });
 });

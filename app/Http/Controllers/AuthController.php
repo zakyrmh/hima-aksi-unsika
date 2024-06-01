@@ -22,6 +22,7 @@ class AuthController extends Controller
             'name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'role' => 'required|string',
         ]);
 
         if ($request->password !== $request->password_confirmation) {
@@ -32,6 +33,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         return redirect()->route('login')->with('success', 'Your account has been successfully created');
