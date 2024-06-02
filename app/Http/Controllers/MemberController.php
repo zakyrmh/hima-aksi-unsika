@@ -24,7 +24,9 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view("dashboard.pages.members.create", [
+            'title' => 'Create Members'
+        ]);
     }
 
     /**

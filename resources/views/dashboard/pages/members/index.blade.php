@@ -6,21 +6,19 @@
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
                         <h1 class="text-base font-semibold leading-6 text-gray-900">Member</h1>
-                        <p class="mt-2 text-sm text-gray-700">List all member on your website including name, email, cellphone
+                        <p class="mt-2 text-sm text-gray-700">List all member on your website including name, email,
+                            cellphone
                             number, and role.</p>
                     </div>
                     <div class="flex gap-4 mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                         <button type="button"
                             class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Add
                             member</button>
-                        <button type="button"
-                            class="block rounded-md bg-emerald-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Add
-                            category</button>
                     </div>
                 </div>
                 <div class="mt-8">
                     <ul role="list" class="divide-y divide-gray-100">
-                        @foreach ($member as $member)
+                        @foreach ($members as $member)
                             <li class="flex justify-between gap-x-6 py-5">
                                 <div class="flex min-w-0 gap-x-4">
                                     <img class="h-12 w-12 flex-none rounded-full bg-gray-50"
