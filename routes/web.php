@@ -50,19 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
     });
 
-    Route::get('/dashboard/users', function () {
-        if (Auth::check() && Auth::user()->role == 'admin') {
-            return app(UserController::class)->index();
-        } else {
-            return Redirect::to('/dashboard')->with('error', 'You do not have admin access');
-        }
-    });
-
-    Route::get('/dashboard/members', function () {
-        if (Auth::check() && Auth::user()->role == 'admin') {
-            return app(MemberController::class)->index();
-        } else {
-            return Redirect::to('/dashboard')->with('error', 'You do not have admin access');
-        }
+    Route::middleware(['isAdmin'])->group(function () {
+        Route::get('/dashboard/users', [UserController::class, 'index']);
+        Route::resource('/dashboard/members', MemberController::class);
     });
 });

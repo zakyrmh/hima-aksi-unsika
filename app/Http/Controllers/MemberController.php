@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class MemberController extends Controller
 {
@@ -34,7 +35,32 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'position' => 'required|string',
+            'section' => 'required|string',
+            'period' => 'required|string',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $photoPath = null;
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $photoName = time() . '_' . $photo->getClientOriginalName();
+            $photo->move(public_path('assets/images'), $photoName);
+            $photoPath = 'assets/images/' . $photoName;
+        }
+
+        Member::create([
+            'name' => $request->name,
+            'position' => $request->position,
+            'section' => $request->section,
+            'period' => $request->period,
+            'photo' => $photoPath,
+        ]);
+
+        return redirect()->route('members.index')->with('success', 'New member successfully created');
     }
 
     /**
@@ -66,6 +92,17 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        // Hapus foto jika ada
+        if ($member->photo) {
+            $filePath = public_path($member->photo);
+            if (File::exists($filePath)) {
+                File::delete($filePath);
+            }
+        }
+
+        // Hapus member dari database
+        $member->delete();
+
+        return redirect()->route('members.index')->with('success', 'Member deleted successfully');
     }
 }
