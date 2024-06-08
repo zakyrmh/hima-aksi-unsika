@@ -76,7 +76,10 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        return view("dashboard.pages.members.edit", [
+            'title' => 'Edit Members',
+            'member' => $member
+        ]);
     }
 
     /**
@@ -84,8 +87,41 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'position' => 'required|string',
+            'section' => 'required|string',
+            'period' => 'required|string',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $photoPath = $member->photo;
+
+        if ($request->hasFile('photo')) {
+            // Delete old photo if exists
+            if ($photoPath) {
+                if (file_exists(public_path($photoPath))) {
+                    unlink(public_path($photoPath));
+                }
+            }
+
+            $photo = $request->file('photo');
+            $photoName = time() . '_' . $photo->getClientOriginalName();
+            $photo->move(public_path('assets/images'), $photoName);
+            $photoPath = 'assets/images/' . $photoName;
+        }
+
+        $member->update([
+            'name' => $request->name,
+            'position' => $request->position,
+            'section' => $request->section,
+            'period' => $request->period,
+            'photo' => $photoPath,
+        ]);
+
+        return redirect()->route('members.index')->with('success', 'Member successfully updated');
     }
+
 
     /**
      * Remove the specified resource from storage.

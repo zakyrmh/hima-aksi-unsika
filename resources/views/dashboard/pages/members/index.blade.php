@@ -31,8 +31,8 @@
                                 </div>
                                 <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                                     <div class="flex gap-x-2 mb-2">
-                                        <button type="button"
-                                            class="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300">Edit</button>
+                                        <a href="/dashboard/members/{{ $member->id }}/edit"
+                                            class="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-2 ring-inset ring-gray-300">Edit</a>
                                         <form action="{{ route('members.destroy', $member->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
