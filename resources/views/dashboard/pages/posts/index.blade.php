@@ -30,6 +30,11 @@
                                         <th scope="col"
                                             class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Category</th>
+                                        @if (Auth::check() && Auth::user()->role === 'admin')
+                                            <th scope="col"
+                                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                Author</th>
+                                        @endif
                                         <th scope="col"
                                             class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Status</th>
@@ -48,13 +53,26 @@
                                                 {{ $post->date }}</td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 {{ $post->category }}</td>
+                                            @if (Auth::check() && Auth::user()->role === 'admin')
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {{ $post->user->name }}</td>
+                                            @endif
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                {{ $post->status }}</td>
+                                                {{ $post->status_text }}</td>
                                             <td
                                                 class="relative flex gap-x-3 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                                <a href="#" class="text-gray-600 hover:text-indigo-900">Show</a>
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                <a href="#" class="text-red-600 hover:text-indigo-900">Delete</a>
+                                                <a href="/dashboard/posts/{{ $post->id }}"
+                                                    class="text-gray-600 hover:text-indigo-900">Show</a>
+                                                <a href="/dashboard/posts/{{ $post->id }}/edit"
+                                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        onclick="return confirm('Are you sure you want to delete this post?')"
+                                                        href="#"
+                                                        class="text-red-600 hover:text-indigo-900">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

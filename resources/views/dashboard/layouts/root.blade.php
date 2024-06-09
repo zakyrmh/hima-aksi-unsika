@@ -124,6 +124,10 @@
         ClassicEditor
             .create(document.querySelector('#editor'))
             .then(editor => {
+                // Set the editor data to the existing content from the database
+                editor.setData(document.querySelector('#body').value);
+
+                // Update the hidden input whenever the editor content changes
                 editor.model.document.on('change:data', () => {
                     document.querySelector('#body').value = editor.getData();
                 });
