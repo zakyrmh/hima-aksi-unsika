@@ -1,13 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MemberCategoryController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 Route::get('/', function () {
     return view('website/pages/home');
@@ -42,13 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
         return view('dashboard/pages/profile/index', [
             'title' => 'Edit Profile'
         ]);
+
     });
 
-    Route::get('/post', function () {
-        return view('dashboard/pages/posts/index', [
-            'title' => 'Posts'
-        ]);
-    });
+    Route::resource('/dashboard/posts', PostController::class);
 
     Route::middleware(['isAdmin'])->group(function () {
         Route::get('/dashboard/users', [UserController::class, 'index']);

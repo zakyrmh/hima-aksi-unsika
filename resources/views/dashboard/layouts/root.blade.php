@@ -9,6 +9,13 @@
     <link rel="shortcut icon" href="{{ asset('assets/image/logo.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* Editing area */
+            min-height: 200px;
+        }
+    </style>
 </head>
 
 <body class="h-full">
@@ -92,6 +99,7 @@
 
 
     <script src="{{ asset('assets/js/scriptDashboard.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
     <script>
         const closeAlert = document.getElementById("closeAlert");
         const alert = document.getElementById("alert");
@@ -111,6 +119,18 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+    </script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                editor.model.document.on('change:data', () => {
+                    document.querySelector('#body').value = editor.getData();
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
 </body>

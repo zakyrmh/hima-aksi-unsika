@@ -10,12 +10,9 @@
                             category, and status.</p>
                     </div>
                     <div class="flex gap-4 mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <button type="button"
+                        <a href="/dashboard/posts/create"
                             class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Add
-                            post</button>
-                        <button type="button"
-                            class="block rounded-md bg-emerald-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">Add
-                            category</button>
+                            post</a>
                     </div>
                 </div>
                 <div class="mt-8 flow-root">
@@ -42,38 +39,25 @@
                                     </tr>
                                 </thead>
                                 <tbody class="acc acg">
-                                    <tr>
-                                        <td
-                                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                            Lorem ipsum dolor sit amet.</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1 Mey 2024
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            News</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Posted</td>
-                                        <td
-                                            class="relative flex gap-x-3 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                            <a href="#" class="text-gray-600 hover:text-indigo-900">Show</a>
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            <a href="#" class="text-red-600 hover:text-indigo-900">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                            Lorem ipsum dolor sit amet consectetur.</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">3 Mey 2024
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            Event</td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Draft</td>
-                                        <td
-                                            class="relative flex gap-x-3 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                            <a href="#" class="text-gray-600 hover:text-indigo-900">Show</a>
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            <a href="#" class="text-red-600 hover:text-indigo-900">Delete</a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($posts as $post)
+                                        <tr>
+                                            <td
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                                {{ $post->title }}</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {{ $post->date }}</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {{ $post->category }}</td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {{ $post->status }}</td>
+                                            <td
+                                                class="relative flex gap-x-3 whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                                <a href="#" class="text-gray-600 hover:text-indigo-900">Show</a>
+                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                <a href="#" class="text-red-600 hover:text-indigo-900">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

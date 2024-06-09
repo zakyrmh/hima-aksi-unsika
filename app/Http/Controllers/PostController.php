@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -12,7 +13,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('dashboard.pages.posts.index', [
+            'title' => 'Posts',
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -20,7 +25,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.pages.posts.create', [
+            'title' => 'Create Post'
+        ]);
     }
 
     /**
@@ -28,7 +35,41 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'title' => 'required|string|min:3|max:255',
+            'category' => 'required|string',
+            'date' => 'nullable|string',
+            'status' => 'nullable|string',
+            'body' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        // Mengonversi status
+        $status = $request->has('status') && $request->input('status') === 'on' ? '1' : '0';
+
+        // Menyimpan image
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('assets/images'), $imageName);
+            $imagePath = 'assets/images/' . $imageName;
+        }
+
+        // Simpan post
+        Post::create([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'category' => $request->category,
+            'date' => $request->date,
+            'status' => $status,
+            'body' => $request->body,
+            'image' => $imagePath,
+        ]);
+
+        // Redirect atau respons sesuai kebutuhan aplikasi
+        return redirect()->route('posts.index')->with('success', 'New post created successfully');
     }
 
     /**
