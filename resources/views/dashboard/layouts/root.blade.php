@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hima-Aksi FE Unsika</title>
-    <link rel="shortcut icon" href="{{ asset('assets/image/logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
@@ -20,7 +20,7 @@
 
 <body class="h-full">
     @if (session('error'))
-        <div class="fixed pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-black/5 m-4"
+        <div class="fixed pointer-events-auto w-full z-[100] max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-black/5 m-4"
             id="alert">
             <div class="p-4">
                 <div class="flex items-start">
@@ -51,7 +51,7 @@
         </div>
     @endif
     @if (session('success'))
-        <div class="fixed pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-black/5 m-4"
+        <div class="fixed pointer-events-auto z-[100] w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-black/5 m-4"
             id="alert">
             <div class="p-4">
                 <div class="flex items-start">

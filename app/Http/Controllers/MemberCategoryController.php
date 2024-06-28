@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\MemberCategory;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MemberCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("dashboard.pages.users.index", [
-            'title' => 'Show User',
-            'users' => User::all()
+        return view("dashboard.pages.memberCategories.index", [
+            'title' => 'Member Categories',
+            'memberCategories' => MemberCategory::all()
         ]);
     }
 
@@ -23,7 +23,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view("dashboard.pages.memberCategories.create", [
+            'title' => 'Create Member Category',
+        ]);
     }
 
     /**
@@ -37,7 +39,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(MemberCategory $memberCategory)
     {
         //
     }
@@ -45,7 +47,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(MemberCategory $memberCategory)
     {
         //
     }
@@ -53,7 +55,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, MemberCategory $memberCategory)
     {
         //
     }
@@ -61,7 +63,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(MemberCategory $memberCategory)
     {
         //
     }

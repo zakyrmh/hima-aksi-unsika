@@ -3,7 +3,7 @@
         <div class="flex lg:flex-1">
             <a href="#" class="-m-1.5 p-1.5">
                 <span class="sr-only">Hima-Aksi UNSIKA</span>
-                <img class="h-8 w-auto" src="{{ asset('assets/image/logo.png') }}" alt="Logo HIMA-AKSI UNSIKA">
+                <img class="h-8 w-auto" src="{{ asset('assets/images/logo.png') }}" alt="Logo HIMA-AKSI UNSIKA">
 
             </a>
         </div>

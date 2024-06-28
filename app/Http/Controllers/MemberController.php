@@ -13,10 +13,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
         return view("dashboard.pages.members.index", [
             'title' => 'Members',
-            'members' => $members
+            'members' => Member::all()
         ]);
     }
 

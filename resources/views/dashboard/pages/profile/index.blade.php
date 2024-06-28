@@ -1,12 +1,15 @@
 @extends('dashboard.layouts.root')
 @section('content')
-    <form class="mx-4">
+    <form class="mx-4" action="{{ route('profile.update', ['user' => Auth::user()]) }}" method="POST"
+        enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
                 <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
                 <p class="mt-1 text-sm leading-6 text-gray-600"></p>
 
-                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div class="mt-10 flex flex-col gap-y-8">
                     <div class="col-span-full">
                         <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
                         <div class="mt-2 flex items-center gap-x-3">
@@ -19,22 +22,32 @@
                                 class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
                         </div>
                     </div>
+                    <div class="flex flex-col gap-y-8">
+                        <div class="sm:col-span-3">
+                            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full
+                                name</label>
+                            <div class="mt-2">
+                                <input type="text" name="name" id="name" autocomplete="given-name"
+                                    value="{{ Auth::user()->name }}"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
 
-                    <div class="sm:col-span-3">
-                        <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full name</label>
-                        <div class="mt-2">
-                            <input type="text" name="name" id="name" autocomplete="given-name"
-                                value="{{ Auth::user()->name }}"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <div class="sm:col-span-3">
+                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
+                                address</label>
+                            <div class="mt-2">
+                                <input id="email" name="email" type="email" autocomplete="email"
+                                    value="{{ Auth::user()->email }}"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                     </div>
-
                     <div class="sm:col-span-3">
-                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
-                            address</label>
+                        <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Confirm
+                            Password</label>
                         <div class="mt-2">
-                            <input id="email" name="email" type="email" autocomplete="email"
-                                value="{{ Auth::user()->email }}"
+                            <input type="password" name="password" id="password" required
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>

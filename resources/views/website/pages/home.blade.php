@@ -1,37 +1,120 @@
 @extends('website.layouts.root')
 @section('content')
-    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-            style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+    <section
+        class="flex flex-col min-h-screen px-6 lg:px-8 md:flex-row-reverse md:justify-center md:gap-x-6 md:flex-wrap md:items-center mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-full">
+        <div class="mt-10 lg:mt-0">
+            <img class="rounded-md md:max-w-60 lg:max-w-sm" src="{{ asset('assets/images/background.png') }}"
+                alt="Background Photo Hima-Aksi Unsika">
         </div>
-    </div>
-    <div class="mx-auto max-w-2xl py-24 sm:py-48 lg:py-36">
-        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div
-                class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span
-                        class="absolute inset-0" aria-hidden="true"></span>Read more <span
-                        aria-hidden="true">&rarr;</span></a>
+        <div class="mt-8 md:max-w-80 lg:max-w-lg">
+            <div class="text-center">
+                <h1 class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl lg:text-4xl">Selamat Data di Himpunan
+                    Mahasiswa
+                    Fakultas Ekonomi</h1>
+                <p class="mt-4 text-lg leading-8 text-gray-600">UNIVERSITAS SINGABERBANGSA KARAWANG</p>
             </div>
         </div>
-        <div class="text-center">
-            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Data to enrich your online
-                business</h1>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt.
-                Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
-            <div class="mt-10 flex items-center justify-center gap-x-6">
-                <a href="#"
-                    class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get
-                    started</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span
-                        aria-hidden="true">→</span></a>
+    </section>
+    <section class="lg:max-w-3xl px-6 lg:px-8 lg:mx-auto mx-auto sm:max-w-lg md:max-w-2xl">
+        <h2 class="text-center text-lg font-bold tracking-tight text-gray-900 sm:text-xl lg:text-3xl">Deskripsi</h2>
+        <p class="text-justify leading-8 text-gray-600 mt-4">HIMA-AKSI merupakan Organisasi Mahasiswa Prodi Akuntansi yang
+            mewadahi aspirasi dan
+            kreativitas Mahasiswa Prodi
+            D3 dan S1 Akuntansi Fakultas Ekonomi Universitas Singaperbangsa Karawang dalam hal pengkajian akuntansi,
+            kewirausahaan, pengembangan sumber daya organisasi, komunikasi-informasi, minat dan bakat, serta pengabdian
+            kepada masyarakat. Bertujuan untuk menjalin kerja sama antar Mahasiswa Prodi Akuntansi pada khususnya dan
+            Fakultas Ekonomi pada umumnya untuk meningkatkan intelektualitas dan profesionalisme serta mewujudkan kinerja
+            yang efektif dan efisien.</p>
+    </section>
+    <section
+        class="flex flex-col justify-center gap-4 px-6 lg:px-8 mt-4 md:flex-row lg:max-w-3xl lg:mx-auto mx-auto sm:max-w-lg md:max-w-2xl">
+        <div class="bg-white shadow-lg rounded-lg text-gray-600 p-4 sm:max-w-full md:w-1/2">
+            <h3 class="text-center text-lg font-semibold mb-2 lg:text-xl">Visi</h3>
+            <p class="text-justify leading-6">
+                Menjadikan HIMA-AKSI sebagai organisasi mahasiswa yang menjunjung tinggi rasa kekeluargaan,
+                profesionalisme, dan mengembangkan kualitas, kreativitas serta
+                intelektualitas pengurus agar terciptanya sumber daya manusia yang siap berkontribusi kepada
+                masyarakat, khususnya kepada Mahasiswa Akuntansi Fakultas Ekonomi Universitas Singaperbangsa
+                Karawang.
+            </p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg text-gray-600 p-4 sm:max-w-full md:w-1/2">
+            <h3 class="text-center text-lg font-semibold mb-2 lg:text-xl">Misi</h3>
+            <ul class="list-disc pl-4 text-justify leading-6 lg:text-base">
+                <li>
+                    Menciptakan ikatan erat pengurus HIMA-AKSI yang selanjutnya mempererat hubungan dengan
+                    mahasiswa akuntansi FE UNSIKA serta menjalin komunikasi baik kepada civitas FE UNSIKA
+                </li>
+                <li class="mt-2">
+                    Menyediakan tempat lalu menyampaikan aspirasi serta mengembangkan minat-bakat yang
+                    dimiliki mahasiswa akuntansi FE UNSIKA
+                </li>
+                <li class="mt-2">
+                    Menjalankan periode kepengurusan HIMA-AKSI dengan penerapan kedisiplinan, keterbukaan,
+                    serta kebebasan dalam berpendapat.
+                </li>
+                <li class="mt-2">
+                    Membuat program kerja dengan berlandaskan tri dharma dengan tujuan pengembangan kualitas
+                    dan kreativitas pengurus serta bermanfaat bagi masyarakat luas.
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="mt-8">
+        <div class="w-full bg-center bg-cover h-[38rem]"
+            style="background-image: url('{{ asset('assets/images/backgroundKabinet.jpg') }}');">
+            <div class="flex flex-col items-center justify-center text-white w-full h-full px-6 dark:bg-gray-900/40">
+                <h4 class="text-xl font-semibold">#Kabinet</h4>
+                <h3 class="text-2xl font-bold">Yogaswara Abhipraya</h3>
+                <div class="flex flex-col justify-center items-center gap-4 mt-6 md:flex-row">
+                    <img src="{{ asset('assets/images/logoKabinet.png') }}" alt="Logo kabinet Yogaswara Abhipraya"
+                        class="w-20 md:w-28">
+                    <div class="text-justify leading-6 sm:max-w-md lg:max-w-2xl">
+                        <p class="mb-2">Kabinet Yogaswara Abhipraya (satu suara untuk mencapai cita), nama kabinet ini
+                            diambil dari dua
+                            kata dalam bahasa sansekerta yaitu "yogaswara" yang artinya (suara untuk bersatu) dan "Abipraya"
+                            artinya (cita cita /harapan).</p>
+                        <p>Dalam artian kabinet yogaswara Abipraya ini mengartikan di dalam sebuah organisasi itu terdiri
+                            dari berbagai macam kepala yang artinya juga bermacam macam pemikiran, tapi bagaimana kita bisa
+                            menyatukan pemikiran tersebut menjadi satu suara, satu tujuan dan satu tindakan, untuk menggapai
+                            sebuah harapan atau cita cita dalam organisasi.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        aria-hidden="true">
-        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-            style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+    </section>
+    <section class="mt-10">
+        <div class="bg-white py-24 sm:py-32">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Berita</h2>
+                <div
+                    class="mx-auto mt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-8 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    <article class="flex max-w-xl flex-col items-start justify-between">
+                        <div class="relative w-full">
+                            <img src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=3603&amp;q=80"
+                                alt=""
+                                class="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+                        </div>
+                        <div class="flex items-center gap-x-4 text-xs mt-4">
+                            <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
+                            <a href="#"
+                                class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
+                        </div>
+                        <div class="group relative">
+                            <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                <a href="#">
+                                    <span class="absolute inset-0"></span>
+                                    Boost your conversion rate
+                                </a>
+                            </h3>
+                            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Illo sint voluptas. Error
+                                voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus
+                                unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </div>
-    </div>
+
+    </section>
 @endsection

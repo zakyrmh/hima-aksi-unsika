@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class MemberCategory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'position',
-        'section',
+        'title',
+        'description',
         'period',
-        'photo',
+        'background',
     ];
 
-    public function memberCategory()
+    public function members()
     {
-        return $this->belongsTo(MemberCategory::class);
+        return $this->hasMany(Member::class);
     }
 }
