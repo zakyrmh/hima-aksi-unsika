@@ -16,6 +16,7 @@ class Post extends Model
         'date',
         'category',
         'status',
+        'link',
         'image',
     ];
 

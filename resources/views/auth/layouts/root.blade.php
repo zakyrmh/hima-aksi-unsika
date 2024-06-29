@@ -75,16 +75,9 @@
         </div>
     @endif
 
-@yield('content');
+    @yield('content');
 
-    <script>
-        const closeAlert = document.getElementById("closeAlert");
-        const alert = document.getElementById("alert");
-
-        closeAlert.addEventListener("click", () => {
-            alert.classList.add("hidden");
-        });
-    </script>
+    <script src="{{ asset('assets/js/alert.js') }}"></script>
 </body>
 
 </html>

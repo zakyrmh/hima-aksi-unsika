@@ -46,12 +46,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="md:max-w-[50%]">
+                <div class="md:max-w-[50%] mt-6 md:mt-0">
                     <label for="image" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
                     <div class="flex flex-col items-center justify-center gap-2 w-full mt-2">
                         <img id="preview" class="w-full h-auto rounded-md cover md:w-[50%]"
-                            src="https://resources.alleghenycounty.us/css/images/Default_No_Image_Available.png"
-                            alt="">
+                            src="{{ asset('assets/images/No_Image_Available.png') }}" alt="">
                         <label for="image"
                             class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                             <div class="flex flex-col items-center justify-center pt-5 pb-6">

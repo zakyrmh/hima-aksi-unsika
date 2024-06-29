@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use App\Models\MemberCategory;
 use Illuminate\Support\Facades\File;
 
 class MemberController extends Controller
@@ -24,8 +25,11 @@ class MemberController extends Controller
      */
     public function create()
     {
+
+
         return view("dashboard.pages.members.create", [
-            'title' => 'Create Members'
+            'title' => 'Members',
+            'memberCategories' => MemberCategory::all()
         ]);
     }
 
@@ -34,13 +38,11 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
             'name' => 'required|string|min:3|max:255',
             'position' => 'required|string',
-            'section' => 'required|string',
-            'period' => 'required|string',
             'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'member_category_id' => 'required|exists:member_categories,id',
         ]);
 
         $photoPath = null;
@@ -54,9 +56,8 @@ class MemberController extends Controller
         Member::create([
             'name' => $request->name,
             'position' => $request->position,
-            'section' => $request->section,
-            'period' => $request->period,
             'photo' => $photoPath,
+            'member_category_id' => $request->member_category_id,
         ]);
 
         return redirect()->route('members.index')->with('success', 'New member successfully created');
@@ -76,7 +77,7 @@ class MemberController extends Controller
     public function edit(Member $member)
     {
         return view("dashboard.pages.members.edit", [
-            'title' => 'Edit Members',
+            'title' => 'Members',
             'member' => $member
         ]);
     }
@@ -90,7 +91,6 @@ class MemberController extends Controller
             'name' => 'required|string|min:3|max:255',
             'position' => 'required|string',
             'section' => 'required|string',
-            'period' => 'required|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -114,7 +114,6 @@ class MemberController extends Controller
             'name' => $request->name,
             'position' => $request->position,
             'section' => $request->section,
-            'period' => $request->period,
             'photo' => $photoPath,
         ]);
 

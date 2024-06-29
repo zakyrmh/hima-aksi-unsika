@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="md:max-w-[50%]">
+                <div class="md:max-w-[50%] mt-6 md:mt-0">
                     <label for="image" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
                     <div class="flex flex-col items-center justify-center gap-2 w-full mt-2">
                         <img id="preview" class="w-full h-auto rounded-md cover md:w-[50%]"

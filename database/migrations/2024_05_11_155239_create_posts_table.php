@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('date')->nullable();
             $table->string('category');
             $table->string('status');
+            $table->string('link');
             $table->string('image');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

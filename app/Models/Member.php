@@ -12,9 +12,8 @@ class Member extends Model
     protected $fillable = [
         'name',
         'position',
-        'section',
-        'period',
         'photo',
+        'member_category_id',
     ];
 
     public function memberCategory()

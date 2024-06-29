@@ -100,14 +100,7 @@
 
     <script src="{{ asset('assets/js/scriptDashboard.js') }}"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
-    <script>
-        const closeAlert = document.getElementById("closeAlert");
-        const alert = document.getElementById("alert");
-
-        closeAlert.addEventListener("click", () => {
-            alert.classList.add("hidden");
-        });
-    </script>
+    <script src="{{ asset('assets/js/alert.js') }}"></script>
     <script>
         function previewImage(event) {
             const input = event.target;

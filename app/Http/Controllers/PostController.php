@@ -41,7 +41,7 @@ class PostController extends Controller
     public function create()
     {
         return view('dashboard.pages.posts.create', [
-            'title' => 'Create Post'
+            'title' => 'Posts'
         ]);
     }
 
@@ -57,6 +57,7 @@ class PostController extends Controller
             'date' => 'nullable|string',
             'status' => 'nullable|string',
             'body' => 'required|string',
+            'link' => 'string',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -72,6 +73,12 @@ class PostController extends Controller
             $imagePath = 'assets/images/' . $imageName;
         }
 
+        // Membuat link
+        $link = strtolower($request->title);
+        $link = str_replace(' ', '-', $link);
+        $link = preg_replace('/[^a-z0-9\-]/', '', $link);
+        $link = preg_replace('/-+/', '-', $link);
+
         // Simpan post
         Post::create([
             'user_id' => Auth::id(),
@@ -80,6 +87,7 @@ class PostController extends Controller
             'date' => $request->date,
             'status' => $status,
             'body' => $request->body,
+            'link' => $link,
             'image' => $imagePath,
         ]);
 
@@ -93,7 +101,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view("dashboard.pages.posts.show", [
-            'title' => 'Show Posts',
+            'title' => 'Posts',
             'post' => $post
         ]);
     }
@@ -104,7 +112,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return view("dashboard.pages.posts.edit", [
-            'title' => 'Edit Posts',
+            'title' => 'Posts',
             'post' => $post
         ]);
     }

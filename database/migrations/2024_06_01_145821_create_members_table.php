@@ -12,14 +12,12 @@ return new class extends Migration {
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('memberCategory_id');
+            $table->unsignedBigInteger('member_category_id');
             $table->string('name');
             $table->string('position');
-            $table->string('section');
-            $table->string('period');
             $table->string('photo')->nullable();
             $table->timestamps();
-            $table->foreign('memberCategory_id')->references('id')->on('member_categories')->onDelete('cascade');
+            $table->foreign('member_category_id')->references('id')->on('member_categories')->onDelete('cascade');
         });
     }
 

@@ -2,24 +2,20 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MemberCategoryController;
 
-Route::get('/', function () {
-    return view('website/pages/home');
-});
-
-Route::get('/blog', function () {
-    return view('website/pages/blog');
-});
+Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
+Route::get('/blog', [WebsiteController::class, 'blog'])->name('website.blog');
 
 Route::get('/about', function () {
     return view('website/pages/about');
@@ -27,8 +23,6 @@ Route::get('/about', function () {
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact/create', [ContactController::class, 'store'])->name('contact.store');
-
-//
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');

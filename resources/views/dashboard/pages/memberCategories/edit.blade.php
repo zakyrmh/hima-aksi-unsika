@@ -1,13 +1,15 @@
 @extends('dashboard.layouts.root')
 @section('content')
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="{{ route('member-categories.store') }}" method="post" enctype="multipart/form-data">
+        <form class="space-y-6" action="{{ route('member-categories.update', ['member_category' => $memberCategory]) }}"
+            method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div>
                 <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                 <div class="mt-2">
-                    <input id="title" name="title" type="text" autocomplete="title" value="{{ old('title') }}"
-                        required
+                    <input id="title" name="title" type="text" autocomplete="title"
+                        value="{{ old('title', $memberCategory->title) }}" required
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
             </div>
@@ -15,8 +17,8 @@
             <div>
                 <label for="period" class="block text-sm font-medium leading-6 text-gray-900">Period</label>
                 <div class="mt-2">
-                    <input id="period" name="period" type="text" autocomplete="period" value="{{ old('period') }}"
-                        required
+                    <input id="period" name="period" type="text" autocomplete="period"
+                        value="{{ old('period', $memberCategory->period) }}" required
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
             </div>
@@ -24,16 +26,15 @@
             <div>
                 <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                 <div class="mt-2">
-                    <textarea id="description" name="description" rows="4" autocomplete="description" value="{{ old('description') }}"
-                        required
-                        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                    <textarea id="description" name="description" rows="4" autocomplete="description" required
+                        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ old('description', $memberCategory->description) }}</textarea>
                 </div>
             </div>
             <div>
                 <label for="background" class="block text-sm font-medium leading-6 text-gray-900">Background</label>
                 <div class="flex flex-col items-center justify-center gap-x-2 w-full mt-2">
                     <img id="preview" class="h-32 rounded-lg aspect-[3/2] cover"
-                        src="{{ asset('assets/images/No_Image_Available.png') }}" alt="">
+                        src="{{ asset($memberCategory->background) }}" alt="{{ $memberCategory->title }}">
                     <label for="background"
                         class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">

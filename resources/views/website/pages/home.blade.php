@@ -89,29 +89,30 @@
                 <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Berita</h2>
                 <div
                     class="mx-auto mt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-8 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    <article class="flex max-w-xl flex-col items-start justify-between">
-                        <div class="relative w-full">
-                            <img src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=3603&amp;q=80"
-                                alt=""
-                                class="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
-                        </div>
-                        <div class="flex items-center gap-x-4 text-xs mt-4">
-                            <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                            <a href="#"
-                                class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Marketing</a>
-                        </div>
-                        <div class="group relative">
-                            <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                <a href="#">
-                                    <span class="absolute inset-0"></span>
-                                    Boost your conversion rate
-                                </a>
-                            </h3>
-                            <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">Illo sint voluptas. Error
-                                voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus
-                                unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
-                        </div>
-                    </article>
+                    @foreach ($posts as $post)
+                        <article class="flex max-w-xl flex-col items-start justify-between">
+                            <div class="relative w-full">
+                                <img src="{{ asset($post->image) }}" alt="{{ $post->title }}"
+                                    class="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+                            </div>
+                            <div class="flex items-center gap-x-4 text-xs mt-4">
+                                <time class="text-gray-500">{{ $post->date }}</time>
+                                <a href="#"
+                                    class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{ $post->category }}</a>
+                            </div>
+                            <div class="group relative">
+                                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                    <a href="/blog/{{ $post->link }}">
+                                        <span class="absolute inset-0"></span>
+                                        {{ $post->title }}
+                                    </a>
+                                </h3>
+                                <div class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">
+                                    {!! $post->body !!}
+                                </div>
+                            </div>
+                        </article>
+                    @endforeach
                 </div>
             </div>
         </div>
