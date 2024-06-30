@@ -41,7 +41,7 @@ class MemberController extends Controller
         $request->validate([
             'name' => 'required|string|min:3|max:255',
             'position' => 'required|string',
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'member_category_id' => 'required|exists:member_categories,id',
         ]);
 
@@ -51,6 +51,8 @@ class MemberController extends Controller
             $photoName = time() . '_' . $photo->getClientOriginalName();
             $photo->move(public_path('assets/images'), $photoName);
             $photoPath = 'assets/images/' . $photoName;
+        } else {
+            $photoPath = 'assets/images/Default_pfp.jpg';
         }
 
         Member::create([
@@ -78,7 +80,8 @@ class MemberController extends Controller
     {
         return view("dashboard.pages.members.edit", [
             'title' => 'Members',
-            'member' => $member
+            'member' => $member,
+            'memberCategories' => MemberCategory::all()
         ]);
     }
 
@@ -90,15 +93,15 @@ class MemberController extends Controller
         $request->validate([
             'name' => 'required|string|min:3|max:255',
             'position' => 'required|string',
-            'section' => 'required|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'member_category_id' => 'required|exists:member_categories,id',
         ]);
 
         $photoPath = $member->photo;
 
         if ($request->hasFile('photo')) {
             // Delete old photo if exists
-            if ($photoPath) {
+            if ($photoPath && $photoPath !== 'assets/images/Default_pfp.jpg') {
                 if (file_exists(public_path($photoPath))) {
                     unlink(public_path($photoPath));
                 }
@@ -113,8 +116,8 @@ class MemberController extends Controller
         $member->update([
             'name' => $request->name,
             'position' => $request->position,
-            'section' => $request->section,
             'photo' => $photoPath,
+            'member_category_id' => $request->member_category_id,
         ]);
 
         return redirect()->route('members.index')->with('success', 'Member successfully updated');
@@ -127,7 +130,7 @@ class MemberController extends Controller
     public function destroy(Member $member)
     {
         // Hapus foto jika ada
-        if ($member->photo) {
+        if ($member->photo && $member->photo !== 'assets/images/Default_pfp.jpg') {
             $filePath = public_path($member->photo);
             if (File::exists($filePath)) {
                 File::delete($filePath);

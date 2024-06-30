@@ -37,7 +37,7 @@
                 <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
                 <div class="flex items-center justify-center gap-x-2 w-full mt-2">
                     <img id="preview" class="w-32 h-32 rounded-md cover"
-                        src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg" alt="">
+                        src="{{ asset('assets/images/Default_pfp.jpg') }}" alt="">
                     <label for="photo"
                         class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">

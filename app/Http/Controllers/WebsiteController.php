@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\MemberCategory;
 
 class WebsiteController extends Controller
 {
@@ -34,6 +35,24 @@ class WebsiteController extends Controller
         return view('website.pages.blog', [
             'title' => 'Blog',
             'posts' => $posts
+        ]);
+    }
+
+    public function about()
+    {
+        $categories = MemberCategory::with('members')->get();
+
+        // Urutan manual yang diinginkan
+        $desiredOrder = ['Badan Pengurus Harian', 'Bidang Pendidikan', 'Bidang Penelitian & Pengembangan', 'Bidang Pengabdian'];
+
+        // Mengurutkan MemberCategory sesuai urutan manual
+        $categories = $categories->sortBy(function ($category) use ($desiredOrder) {
+            return array_search($category->title, $desiredOrder);
+        });
+
+        return view('website.pages.about', [
+            'title' => 'About',
+            'categories' => $categories
         ]);
     }
 }

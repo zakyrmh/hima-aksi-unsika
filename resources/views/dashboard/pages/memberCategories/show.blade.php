@@ -14,7 +14,7 @@
                 {{ $memberCategory->description }}
             </p>
         </div>
-        <div class="flex justify-center gap-4 mt-4">
+        <div class="grid justify-items-center grid-cols-2 gap-4 mt-4 mx-4 sm:grid-cols-3 md:grid-cols-4">
             @forelse($memberCategory->members as $member)
                 <div class="max-w-44 overflow-hidden bg-white rounded-lg shadow-md">
                     <img class="object-cover w-full aspect-square" src="{{ asset($member->photo) }}"

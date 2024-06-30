@@ -24,23 +24,39 @@
             </div>
 
             <div>
-                <label for="section" class="block text-sm font-medium leading-6 text-gray-900">Section</label>
+                <label for="member_category_id" class="block text-sm font-medium leading-6 text-gray-900">Section</label>
                 <div class="mt-2">
-                    <input id="section" name="section" type="text" autocomplete="section"
-                        value="{{ old('section', $member->section) }}" required
+                    <select id="member_category_id" name="member_category_id" required
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        @foreach ($memberCategories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ $member->member_category_id == $category->id ? 'selected' : '' }}>
+                                {{ $category->title }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
             <div>
                 <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
-                <div class="flex items-start gap-x-2 mt-2">
+                <div class="flex items-center justify-center gap-x-2 w-full mt-2">
                     <img id="preview" class="w-32 h-32 rounded-md cover"
-                        src="{{ $member->photo ? asset($member->photo) : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg' }}"
+                        src="{{ $member->photo ? asset($member->photo) : asset('assets/images/Default_pfp.jpg') }}"
                         alt="{{ $member->name }}">
-                    <input id="photo" name="photo" type="file" autocomplete="photo" value="{{ old('photo') }}"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        onchange="previewImage(event)">
+                    <label for="photo"
+                        class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg class="w-8 h-8 mb-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                            </svg>
+                            <p class="mb-2 text-sm text-gray-500 "><span class="font-semibold">Click to
+                                    upload</span> or drag and drop</p>
+                            <p class="text-xs text-gray-500 ">SVG, PNG, or JPG (MAX. 2MB)</p>
+                        </div>
+                        <input id="photo" name="photo" type="file" class="hidden" onchange="previewImage(event)" />
+                    </label>
                 </div>
             </div>
 

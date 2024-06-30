@@ -37,8 +37,8 @@ class MemberCategoryController extends Controller
         $request->validate([
             'title' => 'required|string|min:3|max:255',
             'period' => 'required|string',
-            'description' => 'required|string',
-            'background' => 'image|mimes:jpeg,png,jpg|max:5120',
+            'description' => 'nullable|string',
+            'background' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
         $backgroundPath = null;
@@ -50,7 +50,6 @@ class MemberCategoryController extends Controller
         } else {
             $backgroundPath = 'assets/images/No_Image_Available.png';
         }
-
 
         MemberCategory::create([
             'title' => $request->title,
@@ -102,7 +101,7 @@ class MemberCategoryController extends Controller
 
         if ($request->hasFile('background')) {
             // Delete old background if exists
-            if ($backgroundPath) {
+            if ($backgroundPath && $backgroundPath !== 'assets/images/No_Image_Available.png') {
                 if (file_exists(public_path($backgroundPath))) {
                     unlink(public_path($backgroundPath));
                 }

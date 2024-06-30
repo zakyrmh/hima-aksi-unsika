@@ -16,10 +16,7 @@ use App\Http\Controllers\MemberCategoryController;
 
 Route::get('/', [WebsiteController::class, 'home'])->name('website.home');
 Route::get('/blog', [WebsiteController::class, 'blog'])->name('website.blog');
-
-Route::get('/about', function () {
-    return view('website/pages/about');
-});
+Route::get('/about', [WebsiteController::class, 'about'])->name('website.about');
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('/contact/create', [ContactController::class, 'store'])->name('contact.store');

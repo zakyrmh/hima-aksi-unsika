@@ -14,6 +14,7 @@ class MemberCategory extends Model
         'description',
         'period',
         'background',
+        'member_category_id'
     ];
 
     public function members()
