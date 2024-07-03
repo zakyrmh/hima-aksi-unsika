@@ -61,27 +61,22 @@
         </div>
     </section>
     <section class="mt-8">
-        <div class="w-full bg-center bg-cover h-[38rem]"
-            style="background-image: url('{{ asset('assets/images/backgroundKabinet.jpg') }}');">
-            <div class="flex flex-col items-center justify-center text-white w-full h-full px-6 dark:bg-gray-900/40">
-                <h4 class="text-xl font-semibold">#Kabinet</h4>
-                <h3 class="text-2xl font-bold">Yogaswara Abhipraya</h3>
-                <div class="flex flex-col justify-center items-center gap-4 mt-6 md:flex-row">
-                    <img src="{{ asset('assets/images/logoKabinet.png') }}" alt="Logo kabinet Yogaswara Abhipraya"
-                        class="w-20 md:w-28">
-                    <div class="text-justify leading-6 sm:max-w-md lg:max-w-2xl">
-                        <p class="mb-2">Kabinet Yogaswara Abhipraya (satu suara untuk mencapai cita), nama kabinet ini
-                            diambil dari dua
-                            kata dalam bahasa sansekerta yaitu "yogaswara" yang artinya (suara untuk bersatu) dan "Abipraya"
-                            artinya (cita cita /harapan).</p>
-                        <p>Dalam artian kabinet yogaswara Abipraya ini mengartikan di dalam sebuah organisasi itu terdiri
-                            dari berbagai macam kepala yang artinya juga bermacam macam pemikiran, tapi bagaimana kita bisa
-                            menyatukan pemikiran tersebut menjadi satu suara, satu tujuan dan satu tindakan, untuk menggapai
-                            sebuah harapan atau cita cita dalam organisasi.</p>
+        @foreach ($cabinets as $cabinet)
+            <div class="w-full bg-center bg-cover h-[38rem]"
+                style="background-image: url('{{ asset($cabinet->background) }}');">
+                <div class="flex flex-col items-center justify-center text-white w-full h-full px-6 dark:bg-gray-900/40">
+                    <h4 class="text-xl font-semibold">#Kabinet</h4>
+                    <h3 class="text-2xl font-bold">{{ $cabinet->title }}</h3>
+                    <div class="flex flex-col justify-center items-center gap-4 mt-6 md:flex-row">
+                        <img src="{{ asset($cabinet->logo) }}" alt="Logo kabinet {{ $cabinet->title }}"
+                            class="w-20 md:w-28">
+                        <div class="text-justify leading-6 sm:max-w-md lg:max-w-2xl">
+                            {!! $cabinet->description !!}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </section>
     <section class="mt-10">
         <div class="bg-white py-24 sm:py-32">

@@ -24,6 +24,10 @@
                             <a href="/dashboard/members"
                                 class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Members' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Members</a>
                         @endif
+                        @if (Auth::check() && Auth::user()->role === 'admin')
+                            <a href="/dashboard/cabinets"
+                                class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Cabinets' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Cabinets</a>
+                        @endif
                         <a href="/dashboard/messages"
                             class="px-3 py-2 text-sm font-medium rounded-md {{ $title == 'Messages' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Messages</a>
                     </div>
@@ -95,15 +99,25 @@
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="/"
                 class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Dashboard' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Dashboard</a>
-            <a href="/dashboard/users"
-                class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Users' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Users</a>
+            @if (Auth::check() && Auth::user()->role === 'admin')
+                <a href="/dashboard/users"
+                    class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Users' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Users</a>
+            @endif
             <a href="/dashboard/posts"
                 class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Posts' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Posts</a>
-            <a href="/dashboard/member-categories"
-                class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Member Categories' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Member
-                Categories</a>
-            <a href="/dashboard/members"
-                class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Members' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Members</a>
+            @if (Auth::check() && Auth::user()->role === 'admin')
+                <a href="/dashboard/member-categories"
+                    class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Member Categories' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Member
+                    Categories</a>
+            @endif
+            @if (Auth::check() && Auth::user()->role === 'admin')
+                <a href="/dashboard/members"
+                    class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Members' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Members</a>
+            @endif
+            @if (Auth::check() && Auth::user()->role === 'admin')
+                <a href="/dashboard/cabinets"
+                    class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Cabinets' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Cabinets</a>
+            @endif
             <a href="/dashboard/messages"
                 class="block rounded-md px-3 py-2 text-base font-medium {{ $title == 'Messages' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">Messages</a>
         </div>

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Post;
+use App\Models\Cabinet;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use App\Models\MemberCategory;
+use Illuminate\Routing\Controller;
 
 class WebsiteController extends Controller
 {
@@ -18,9 +19,12 @@ class WebsiteController extends Controller
             $post->date = Carbon::parse($post->date)->translatedFormat('d F Y');
         }
 
+        $cabinets = Cabinet::where('status', 1)->get();
+
         return view('website.pages.home', [
             'title' => 'Home',
-            'posts' => $posts
+            'posts' => $posts,
+            'cabinets' => $cabinets
         ]);
     }
 
@@ -42,17 +46,14 @@ class WebsiteController extends Controller
     {
         $categories = MemberCategory::with('members')->get();
 
-        // Urutan manual yang diinginkan
-        $desiredOrder = ['Badan Pengurus Harian', 'Bidang Pendidikan', 'Bidang Penelitian & Pengembangan', 'Bidang Pengabdian'];
-
-        // Mengurutkan MemberCategory sesuai urutan manual
-        $categories = $categories->sortBy(function ($category) use ($desiredOrder) {
-            return array_search($category->title, $desiredOrder);
-        });
+        $categoriesByPeriod = $categories->groupBy('period');
+        $latestPeriod = $categoriesByPeriod->keys()->max();
 
         return view('website.pages.about', [
             'title' => 'About',
-            'categories' => $categories
+            'categoriesByPeriod' => $categoriesByPeriod,
+            'latestPeriod' => $latestPeriod
         ]);
     }
+
 }

@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }} - Hima-Aksi FE Unsika</title>
-    <link rel="shortcut icon" href="{{ asset('assets/image/logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ asset('build/assets/app-7TFmTgQy.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-D2jpX1vH.js') }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 </head>
 

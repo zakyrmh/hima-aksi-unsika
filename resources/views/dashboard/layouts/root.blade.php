@@ -8,6 +8,8 @@
     <title>Hima-Aksi FE Unsika</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}" type="image/x-icon">
     @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ asset('build/assets/app-7TFmTgQy.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-D2jpX1vH.js') }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
     <style>
@@ -101,18 +103,7 @@
     <script src="{{ asset('assets/js/scriptDashboard.js') }}"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
     <script src="{{ asset('assets/js/alert.js') }}"></script>
-    <script>
-        function previewImage(event) {
-            const input = event.target;
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('preview').src = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+    <script src="{{ asset('assets/js/imagePreview.js') }}"></script>
     <script>
         ClassicEditor
             .create(document.querySelector('#editor'))
