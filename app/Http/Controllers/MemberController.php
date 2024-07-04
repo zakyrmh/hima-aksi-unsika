@@ -49,8 +49,8 @@ class MemberController extends Controller
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
             $photoName = time() . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('assets/images'), $photoName);
-            $photoPath = 'assets/images/' . $photoName;
+            $photo->move(public_path('assets/images/members'), $photoName);
+            $photoPath = 'assets/images/members/' . $photoName;
         } else {
             $photoPath = 'assets/images/Default_pfp.jpg';
         }
@@ -109,8 +109,8 @@ class MemberController extends Controller
 
             $photo = $request->file('photo');
             $photoName = time() . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('assets/images'), $photoName);
-            $photoPath = 'assets/images/' . $photoName;
+            $photo->move(public_path('assets/images/members'), $photoName);
+            $photoPath = 'assets/images/members/' . $photoName;
         }
 
         $member->update([

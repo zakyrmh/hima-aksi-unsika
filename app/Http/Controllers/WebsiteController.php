@@ -56,4 +56,17 @@ class WebsiteController extends Controller
         ]);
     }
 
+    public function showBlog($link)
+    {
+        // Mencari postingan berdasarkan link
+        $post = Post::where('link', $link)->firstOrFail();
+
+        // Mengirim data ke view
+        return view('website.pages.showblog', [
+            'title' => 'Show Blog',
+            'post' => $post,
+            'posts' => Post::all()
+        ]);
+    }
+
 }

@@ -7,7 +7,7 @@
         <div class="tabs md:mt-2">
             <nav class="isolate flex justify-center rounded-lg shadow-lg divide-x divide-slate-300 w-fit mx-auto">
                 @foreach ($categoriesByPeriod as $period => $categories)
-                    <a class="relative bg-white text-gray-900 text-center text-sm py-4 px-6 rounded-l-lg"
+                    <a class="relative  text-gray-900 text-center text-sm py-4 px-6 rounded-l-lg"
                         data-tab="{{ $period }}">
                         Periode {{ $period }}
                     </a>
@@ -20,9 +20,26 @@
                     <h3 class="text-center text-xl font-bold tracking-tight text-gray-900 mt-10 mb-4 sm:text-2xl">
                         {{ $category->title }}
                     </h3>
+                    <div class="flex items-center justify-center w-full">
+                        <div class="max-w-44 overflow-hidden bg-white rounded-lg shadow-md">
+                            <img class="object-cover w-full aspect-square"
+                                src="{{ asset($category->members->first()->photo) }}"
+                                alt="{{ $category->members->first()->name }}">
+
+                            <div class="p-6">
+                                <div>
+                                    <h4 class="block mt-2 text-lg font-semibold text-gray-800">
+                                        {{ $category->members->first()->name }}
+                                    </h4>
+                                    <p class="mt-2 text-sm text-gray-600">
+                                        {{ $category->members->first()->position }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div
-                        class="grid justify-items-center grid-cols-2 gap-4 max-w-fit mx-auto mt-4 sm:grid-cols-3 {{ $category->members->count() >= 4 ? 'md:grid-cols-4' : '' }}">
-                        @foreach ($category->members as $member)
+                        class="grid justify-items-center grid-cols-2 gap-4 max-w-fit mx-auto mt-4 {{ $category->members->count() > 3 ? 'sm:grid-cols-3' : '' }} {{ $category->members->count() > 4 ? 'md:grid-cols-4' : '' }}">
+                        @foreach ($category->members->slice(1) as $member)
                             <div class="max-w-44 overflow-hidden bg-white rounded-lg shadow-md">
                                 <img class="object-cover w-full aspect-square" src="{{ asset($member->photo) }}"
                                     alt="{{ $member->name }}">

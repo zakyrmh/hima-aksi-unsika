@@ -1,4 +1,4 @@
-<footer class="bg-white relative w-full bottom-0">
+<footer class="relative bottom-0 w-full bg-white">
     <div class="container flex flex-col items-center justify-between p-6 mx-auto space-y-4 sm:space-y-0 sm:flex-row">
         <a href="/">
             <img class="w-auto h-7" src="{{ asset('assets/images/logo.png') }}" alt="Logo HIMA-AKSI Unsika">

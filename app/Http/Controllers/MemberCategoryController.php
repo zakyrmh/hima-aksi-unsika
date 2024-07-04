@@ -45,10 +45,10 @@ class MemberCategoryController extends Controller
         if ($request->hasFile('background')) {
             $background = $request->file('background');
             $backgroundName = time() . '_' . $background->getClientOriginalName();
-            $background->move(public_path('assets/images'), $backgroundName);
-            $backgroundPath = 'assets/images/' . $backgroundName;
+            $background->move(public_path('assets/images/member_categories'), $backgroundName);
+            $backgroundPath = 'assets/images/member_categories/' . $backgroundName;
         } else {
-            $backgroundPath = 'assets/images/No_Image_Available.png';
+            $backgroundPath = 'assets/images/member_categories/No_Image_Available.png';
         }
 
         MemberCategory::create([
@@ -109,8 +109,8 @@ class MemberCategoryController extends Controller
 
             $background = $request->file('background');
             $backgroundName = time() . '_' . $background->getClientOriginalName();
-            $background->move(public_path('assets/images'), $backgroundName);
-            $backgroundPath = 'assets/images/' . $backgroundName;
+            $background->move(public_path('assets/imagesmember_categories'), $backgroundName);
+            $backgroundPath = 'assets/images/member_categories' . $backgroundName;
         }
 
         $memberCategory->update([

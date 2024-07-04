@@ -69,8 +69,8 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('assets/images'), $imageName);
-            $imagePath = 'assets/images/' . $imageName;
+            $image->move(public_path('assets/images/posts'), $imageName);
+            $imagePath = 'assets/images/posts/' . $imageName;
         }
 
         // Membuat link
@@ -145,8 +145,8 @@ class PostController extends Controller
 
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('assets/images'), $imageName);
-            $imagePath = 'assets/images/' . $imageName;
+            $image->move(public_path('assets/images/posts'), $imageName);
+            $imagePath = 'assets/images/posts/' . $imageName;
         }
 
         $post->update([
